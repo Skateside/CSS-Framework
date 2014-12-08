@@ -1,0 +1,71 @@
+// .unit(@property, @amount[, @amount-2[, @amount-3[, @amount-4]]])
+// -----------------------------------------------------------------------------
+// 
+// @property {string} CSS property to set
+// @amount   {number} Number of units to set.
+// @amount-2 {number} Number of units to set.
+// @amount-3 {number} Number of units to set.
+// @amount-4 {number} Number of units to set.
+// 
+// This mixin sets the given @property to the set amounts of @base-unit-amount
+// and set to @base-font-unit. This is a handy way of simplifying calculations
+// in the LESS files. This mixin takes between 2 and 5 arguments. The first
+// argument is always the property to set, the remaining arguments set the
+// quantities of @base-unit-amount to set.
+// 
+// Examples:
+// 
+// Assuming that @base-unit-amount is 20 and @base-font-unit is px.
+// 
+//      .unit(padding, 1);
+//      // -> padding: 20px;
+//      
+//      .unit(padding, 1, 2);
+//      // -> padding: 20px 40px;
+//      
+//      .unit(padding, 1, 2, 3);
+//      // -> padding: 20px 40px 60px;
+//      
+//      .unit(padding, 1, 2, 3, 4);
+//      // -> padding: 20px 40px 60px 80px;
+//
+// To create less than a whole number of @base-unit-amount, decimals may be
+// passed.
+// 
+//      .unit(padding, 0.5);
+//      // -> padding: 10px;
+//      
+//      .unit(padding, 0.25);
+//      // -> padding: 5px;
+// 
+// It is worth noting that multiplying any number by zero will make zero, units
+// are irrelevant at that point. As such, although passing 0 is perfectly valid,
+// it is unnecessary to pass 0 through this mixin if it is the only amount.
+
+.unit(@property, @amount) {
+    @{property}: unit((@amount * @base-unit-amount), @base-font-unit);
+}
+
+.unit(@property, @amount, @amount-2) {
+
+    @{property}: unit((@amount * @base-unit-amount), @base-font-unit)
+        unit((@amount-2 * @base-unit-amount), @base-font-unit);
+
+}
+
+.unit(@property, @amount, @amount-2, @amount-3) {
+
+    @{property}: unit((@amount * @base-unit-amount), @base-font-unit)
+        unit((@amount-2 * @base-unit-amount), @base-font-unit)
+        unit((@amount-3 * @base-unit-amount), @base-font-unit);
+
+}
+
+.unit(@property, @amount, @amount-2, @amount-3, @amount-4) {
+
+    @{property}: unit((@amount * @base-unit-amount), @base-font-unit)
+        unit((@amount-2 * @base-unit-amount), @base-font-unit)
+        unit((@amount-3 * @base-unit-amount), @base-font-unit)
+        unit((@amount-4 * @base-unit-amount), @base-font-unit);
+
+}

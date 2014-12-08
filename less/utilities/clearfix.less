@@ -1,0 +1,26 @@
+/* ## Clearfix
+
+The micro clearfix popularised by [Nicholas
+Gallacher](http://nicolasgallagher.com/micro-clearfix-hack/). It simply makes
+the parent contain all floats.
+
+    <div class="u-clearfix" style="border: 1px dotted red; width: 250px;">
+        <div style="float: left; width: 100px;">alpha</div>
+        <div style="float: right; width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+
+.u-clearfix {
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+    }
+
+    &::after {
+        clear: both;
+    }
+
+}

@@ -1,0 +1,54 @@
+/* ## Headings
+
+Heading elements have default styles styles, `h1` being the largest and `h6`
+being the smallest. They all have a default `font-family` and `font-weight`.
+
+    <h1>Headline</h1>
+    <h2>Sub headline</h2>
+    <h3>By line</h3>
+    <h4>Stand-out</h4>
+    <h5>Attention</h5>
+    <h6>Minor</h6>
+
+The styles also have complimentary class names `.h1` to `.h6`. This allows the
+classes to be applied to any element, including headings, and apply the desired
+styles. This is very handy when an SEO company asks for the markup to change but
+the design should not.
+
+    <h2 class="h1">Headline (but an h2)</h2>
+    <p class="h2">Sub headline (but a p)</p>
+    <p><strong class="h3">By line (but a strong)</strong></p>
+    <p><span class="h4">Stand-out (but a span)</strong></p>
+    <div class="h5">Attention (but a div)</div>
+    <h1 class="h6">Minor (but an h1)</h1>
+
+Additionally there is an `h0` class that can be applied to a heading element to
+make it look like any other piece of text.
+
+    <h1 class="h0">Headline</h1>
+    <h2 class="h0">Sub headline</h2>
+    <h3 class="h0">By line</h3>
+    <h4 class="h0">Stand-out</h4>
+    <h5 class="h0">Attention</h5>
+    <h6 class="h0">Minor</h6>
+
+*/
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: @heading-font-family;
+    font-weight: bold;
+}
+
+h1, .h1 { font-size: unit((2.3  * @base-font-size), @base-font-unit); } // 32px approx
+h2, .h2 { font-size: unit((2    * @base-font-size), @base-font-unit); } // 28px
+h3, .h3 { font-size: unit((1.8  * @base-font-size), @base-font-unit); } // 25px approx 
+h4, .h4 { font-size: unit((1.5  * @base-font-size), @base-font-unit); } // 21px
+h5, .h5 { font-size: unit((1.3  * @base-font-size), @base-font-unit); } // 18px approx
+h6, .h6 { font-size: unit((1.15 * @base-font-size), @base-font-unit); } // 16px approx
+
+.h0 {
+    font-family: inherit;
+    font-size:   inherit;
+    font-weight: inherit;
+}

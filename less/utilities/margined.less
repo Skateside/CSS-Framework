@@ -1,0 +1,25 @@
+/* ## Margined elements.
+
+Mainly useful for creating space between list items.
+
+    <ul class="u-margined">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+
+.u-margined {
+
+    > * {
+
+        .unit(margin-bottom, 0.5);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+    }
+
+}

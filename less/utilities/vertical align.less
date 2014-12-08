@@ -1,0 +1,66 @@
+/* ## Table-like layouts
+
+Makes the immediate children behave like `table-cell`s. This is not so useful on
+it's own, but acts like a base for `u-verttop`, `u-vertmid` and `u-vertbottom`.
+
+*/
+
+.u-table {
+
+    display: table;
+
+    > * {
+        display: table-cell;
+    }
+
+}
+
+
+/* ## Vertical alignments
+
+Vertically aligns test. There are three varients:
+
+- `u-verttop` - Vertically aligns at the top.
+- `u-vertmid` - Vertically aligns at the middle.
+- `u-vertbottom` - Vertically aligns at the bottom.
+
+    <div class="u-verttop" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+    <div class="u-vertmid" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+    <div class="u-vertbottom" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+*/
+
+.u-verttop:extend(.u-table all) {
+
+    > * {
+        vertical-align: top;
+    }
+
+}
+
+.u-vertmid:extend(.u-table all) {
+
+    > * {
+        vertical-align: middle;
+    }
+
+}
+
+.u-vertbottom:extend(.u-table all) {
+
+    > * {
+        vertical-align: bottom;
+    }
+
+}

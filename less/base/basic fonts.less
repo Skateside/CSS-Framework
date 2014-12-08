@@ -1,0 +1,45 @@
+/* ## Basic fonts
+
+All fonts inherit from the `body` tag, so we have some basic font family, size
+and line-height applied.
+
+The `html` element has `text-size-adjust` set to `100%` to prevent iOS text size
+adjust after orientation change, without disabling user zoom.
+`abbr[title]` has a `border-bottom` defined and `b` and `strong` have had their
+`font-weight`s normalised to `bold`.
+Taken from [Normalize.css](http://necolas.github.io/normalize.css/).
+ */
+
+html {
+    -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+}
+
+body {
+    background-color: @white;
+    color:            @darker-grey;
+    font-family:      @base-font-family;
+    font-size:        unit(@base-font-size, @base-font-unit);
+    line-height:      @base-line-height;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+p, ul, ol, dl,
+blockquote, pre {
+    .unit(margin-bottom, 1);
+}
+
+ul,
+ol {
+    .unit(margin-left, 1);
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+b,
+strong {
+    font-weight: bold;
+}

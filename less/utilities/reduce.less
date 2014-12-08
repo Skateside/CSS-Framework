@@ -1,0 +1,25 @@
+/* ## Reducers
+
+Removes the natural margin from the top of the first element and the bottom of
+the last one. Very handy for placing text within a box and having that box's
+`padding` be the only white space.
+
+    <div class="u-reduce" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo</p>
+        <p>charlie</p>
+    </div>
+
+*/
+
+.u-reduce {
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+}

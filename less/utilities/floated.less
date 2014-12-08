@@ -1,0 +1,63 @@
+/* ## Self-contained floats
+
+Functionally identical to `u-clearfix` except that the children are
+automatically floated to the left.
+
+    <div class="u-floated" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+
+.u-floated:extend(.u-clearfix all) {
+
+    > * {
+        float: left;
+    }
+
+}
+
+/* ## Self-contained inverted floats
+
+Exactly the same as `u-floated` except that elements are floated to the right,
+not the left. Beware that this can appear to reverse the order of the elements.
+
+    <div class="u-floatright" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+
+.u-floatright:extend(.u-clearfix all) {
+
+    > * {
+        float: right;
+    }
+
+}
+
+/* ## Self-contained split floats
+
+Designed primarily for an element containing **2** children, the first is
+floated to the left, the second is floated to the right.
+
+    <div class="u-floatsplit" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+
+.u-floatsplit:extend(.u-clearfix all) {
+
+    > :first-child {
+        float: left;
+    }
+
+    > :last-child {
+        float: right;
+    }
+
+}

@@ -1,0 +1,31 @@
+/* ## Tables
+
+Remove most spacing between table cells. Taken from
+[Normalize.css](http://necolas.github.io/normalize.css/)
+
+    <table>
+        <thead>
+            <tr>
+                <th>One</th>
+                <td>Two</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Three</th>
+                <td>Four</td>
+            </tr>
+        </tbody>
+    </table>
+
+*/
+
+table {
+    border-collapse: collapse;
+    border-spacing:  0;
+}
+
+thead, tbody,
+tr, th, td {
+    border-color: inherit;
+}

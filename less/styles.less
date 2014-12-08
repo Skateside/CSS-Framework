@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+// Basic Style Sheet
+// =============================================================================
+
+
+// Variables
+// -----------------------------------------------------------------------------
+// 
+// These includes help set up the style sheet.
+
+@import "variables.less";
+
+
+// Mixins
+// -----------------------------------------------------------------------------
+// 
+// These includes help create the style sheet.
+
+@import "mixins/unit.less";
+@import "mixins/button-variant.less";
+@import "mixins/text-and-background.less";
+
+
+// Base files
+// -----------------------------------------------------------------------------
+// 
+// The core files style the basic elements.
+
+/* # Base rules
+
+This style sheet attempts to show how CSS selectors can be limited to no more
+than a single class (although there are exceptions). Keeping to such a
+restriction helps contain the styling to a module and allows for easier
+sub-classes of modules. It also enables the surgical classes (below) to work.
+*/
+
+@import "base/universal.less";
+@import "base/basic fonts.less";
+@import "base/block-level elements.less";
+@import "base/headings.less";
+@import "base/tables.less";
+@import "base/sub and sup.less";
+@import "base/images.less";
+
+
+// Utilities
+// -----------------------------------------------------------------------------
+// 
+// Repeated design patterns, abstracted into reusable classes.
+
+/* # Utilities
+
+Utility classes are frequently used styling patterns. They are the only classes
+in this style sheet that are allowed to know anything about the child elements
+(although this should be limited to the immediate children using the direct
+decendant selector `>`). 
+*/
+
+@import "utilities/clearfix.less";
+@import "utilities/floated.less";
+@import "utilities/lists.less";
+@import "utilities/vertical align.less";
+@import "utilities/reduce.less";
+@import "utilities/margined.less";
+
+
+// Modules
+// -----------------------------------------------------------------------------
+// 
+// Unique (although repeatable) design elements. There are likely to be many of
+// these throughout the project's lifespan, but try to limit the numbers.
+
+/* # Modules
+
+Code from here on describes modules. Each module is designed to be stand-alone,
+meaning that it has no other module dependancies (although it may rely on base
+rules, utilities and helper classes.
+*/
+
+@import "modules/input.less";
+@import "modules/button.less";
+@import "modules/media.less";
+
+
+// Helper classes
+// -----------------------------------------------------------------------------
+// 
+// Designed to override modules.
+
+/* # Helper classes
+
+Helper classes are designed to override modules in a site-consisten way. They
+override one or two styles at a time, mainly existing to remove the strain from
+the modules as well as being able to fix small rendering errors quickly.
+*/
+
+@import "helper/text and background.less";

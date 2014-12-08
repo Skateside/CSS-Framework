@@ -1,0 +1,72 @@
+/* ## Bulletless lists
+
+Removes bullet points from a list. Works on unordered lists (`<ul>`) and ordered
+lists (`<ol>`) the same.
+
+    <ul class="u-bulletless">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+
+.u-bulletless {
+    list-style-type: none;
+    margin-left:     0;
+}
+
+
+/* ## Inline lists
+
+Removes the bullet points from a list _and_ floats the list items.
+
+    <ul class="u-inlinelist">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+
+.u-inlinelist {
+    &:extend(.u-floated all);
+    &:extend(.u-bulletless);
+}
+
+
+/* ## Border lists
+
+Makes the elements appear next to one-another and places a border in-between
+each of them.
+
+    <ul class="u-borderlist">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+
+.u-borderlist:extend(.u-bulletless all) {
+
+    border-color: currentcolor;
+
+    > * {
+
+        .unit(margin-left,  0.5);
+        .unit(padding-left, 0.5);
+
+        border-color:      inherit;
+        border-left-style: solid;
+        border-width:      @border-thin;
+
+        &:first-child {
+            border-left-style: none;
+            margin-left:       0;
+            padding-left:      0;
+        }
+
+    }
+
+}

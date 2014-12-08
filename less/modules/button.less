@@ -1,0 +1,76 @@
+/* ## Buttons
+
+Simply CSS-based buttons. Designed to work on anchors (`<a>`), buttons
+(`<button>`) and spans (`<span>`) the same. Be aware that is it **not** designed
+to work with `<input type="submit">` - use `<button type="submit">` instead.
+
+    <p><a href="#" class="button">Anchor</a></p>
+    <p><button type="button" class="button">Button</button></p>
+    <p><span class="button">span</span></p>
+
+*/
+
+.nobutton {
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-color:   transparent;
+    border:             none;
+    cursor:             pointer;
+    display:            inline-block;
+    font-family:        inherit;
+    font-size:          inherit;
+    line-height:        inherit;
+
+    &::-moz-focus-inner {
+        border:  none;
+        padding: 0;
+    }
+
+    &:focus,
+    &:hover,
+    &.is-hover {
+        text-decoration: none;
+    }
+
+}
+
+.button:extend(.nobutton all) {
+
+    .unit(padding, 0.25, 0.5);
+
+    background-color: @lighter-grey;
+    color:            @dark-grey;
+    font-weight:      bold;
+    text-transform:   uppercase;
+    user-select:      none;
+    white-space:      nowrap;
+
+    &:active,
+    &.is-active {
+        background-image: none;
+        box-shadow:       inset 0 unit((@base-font-size / 4), px)
+                                unit((@base-font-size / 2), px)
+                                rgba(0, 0, 0, .125);
+        outline:          0;
+    }
+
+    &[disabled],
+    &.is-disabled {
+        cursor:         not-allowed,
+                        default;
+        opacity:        0.5;
+        pointer-events: none;
+    }
+
+}
+
+.button-success    { .button-variant(@success   ); }
+.button-info       { .button-variant(@info      ); }
+.button-warning    { .button-variant(@warning   ); }
+.button-danger     { .button-variant(@danger    ); }
+.button-primary    { .button-variant(@primary   ); }
+.button-secondary  { .button-variant(@secondary ); }
+.button-tertiary   { .button-variant(@tertiary  ); }
+.button-quaternary { .button-variant(@quaternary); }

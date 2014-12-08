@@ -1,0 +1,52 @@
+// .button-variant(@colour)
+// -----------------------------------------------------------------------------
+// 
+// @colour {colour} CSS colour literal.
+// 
+// Creates the variant styles for the buttons. This mainly allows all colours
+// and colour-states to be button variants quickly. As all buttons have the
+// `button` class and the variant class, the variant mixin only needs to set
+// the styles for changes between buttons.
+// 
+// Examples:
+// 
+// Assuming that @primary: #F00 and @white: #FFF;
+// 
+//      // LESS
+//      .button-primary { .button-variant(@primary); }
+//      
+//      /* CSS */
+//      .button-primary {
+//        background-color: #ff0000;
+//        color: #ffffff;
+//      }
+//      .button-primary:focus,
+//      .button-primary:hover,
+//      .button-primary.is-hover {
+//        background-color: #ff2626;
+//      }
+//      .button-primary:active,
+//      .button-primary.is-active {
+//        background-color: #e60000;
+//      }
+// 
+
+.button-variant(@colour) {
+
+    & {
+        background-color: @colour;
+        color:            @white;
+    }
+
+    &:focus,
+    &:hover,
+    &.is-hover {
+        background-color: lighten(@colour, 7.5%);
+    }
+
+    &:active,
+    &.is-active {
+        background-color: darken(@colour, 5%);
+    }
+
+}

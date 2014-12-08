@@ -1,0 +1,926 @@
+@charset "utf-8";
+/* # Base rules
+
+This style sheet attempts to show how CSS selectors can be limited to no more
+than a single class (although there are exceptions). Keeping to such a
+restriction helps contain the styling to a module and allows for easier
+sub-classes of modules. It also enables the surgical classes (below) to work.
+*/
+/* ## Universal rules
+
+Every element is affected by these classes.
+
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* ## Basic fonts
+
+All fonts inherit from the `body` tag, so we have some basic font family, size
+and line-height applied.
+
+The `html` element has `text-size-adjust` set to `100%` to prevent iOS text size
+adjust after orientation change, without disabling user zoom.
+`abbr[title]` has a `border-bottom` defined and `b` and `strong` have had their
+`font-weight`s normalised to `bold`.
+Taken from [Normalize.css](http://necolas.github.io/normalize.css/).
+ */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  background-color: #ffffff;
+  color: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre {
+  margin-bottom: 16.8px;
+}
+ul,
+ol {
+  margin-left: 16.8px;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+/* ## Block-level Elements
+
+Some browsers don't have `display` set to `block` by default. This snippit
+corrects that. Taken from [Normalize.css](http://necolas.github.io/normalize.css/).
+
+    <article>article element</article>
+    <aside>aside element</aside>
+    <details>details element</details>
+    <figcaption>figcaption element</figcaption>
+    <figure>figure element</figure>
+    <footer>footer element</footer>
+    <header>header element</header>
+    <hgroup>hgroup element</hgroup>
+    <main>main element</main>
+    <menu>menu element</menu>
+    <nav>nav element</nav>
+    <section>section element</section>
+    <summary>summary element</summary>
+
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+/* ## Headings
+
+Heading elements have default styles styles, `h1` being the largest and `h6`
+being the smallest. They all have a default `font-family` and `font-weight`.
+
+    <h1>Headline</h1>
+    <h2>Sub headline</h2>
+    <h3>By line</h3>
+    <h4>Stand-out</h4>
+    <h5>Attention</h5>
+    <h6>Minor</h6>
+
+The styles also have complimentary class names `.h1` to `.h6`. This allows the
+classes to be applied to any element, including headings, and apply the desired
+styles. This is very handy when an SEO company asks for the markup to change but
+the design should not.
+
+    <h2 class="h1">Headline (but an h2)</h2>
+    <p class="h2">Sub headline (but a p)</p>
+    <p><strong class="h3">By line (but a strong)</strong></p>
+    <p><span class="h4">Stand-out (but a span)</strong></p>
+    <div class="h5">Attention (but a div)</div>
+    <h1 class="h6">Minor (but an h1)</h1>
+
+Additionally there is an `h0` class that can be applied to a heading element to
+make it look like any other piece of text.
+
+    <h1 class="h0">Headline</h1>
+    <h2 class="h0">Sub headline</h2>
+    <h3 class="h0">By line</h3>
+    <h4 class="h0">Stand-out</h4>
+    <h5 class="h0">Attention</h5>
+    <h6 class="h0">Minor</h6>
+
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+h1,
+.h1 {
+  font-size: 32.2px;
+}
+h2,
+.h2 {
+  font-size: 28px;
+}
+h3,
+.h3 {
+  font-size: 25.2px;
+}
+h4,
+.h4 {
+  font-size: 21px;
+}
+h5,
+.h5 {
+  font-size: 18.2px;
+}
+h6,
+.h6 {
+  font-size: 16.1px;
+}
+.h0 {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+/* ## Tables
+
+Remove most spacing between table cells. Taken from
+[Normalize.css](http://necolas.github.io/normalize.css/)
+
+    <table>
+        <thead>
+            <tr>
+                <th>One</th>
+                <td>Two</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Three</th>
+                <td>Four</td>
+            </tr>
+        </tbody>
+    </table>
+
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+thead,
+tbody,
+tr,
+th,
+td {
+  border-color: inherit;
+}
+/* ## Sub-text and Super-text
+
+Prevent `sub` and `sup` affecting `line-height` in all browsers. Taken from
+[Normalize.css](http://necolas.github.io/normalize.css/).
+
+    <p>Normal text<br>
+        and line-height.</p>
+    <p>H<sub>2</sub>0<br>
+        x<sup>2</sup></p>
+
+ */
+sub,
+sup {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* ## Images
+
+Images should have no border by default. This sort issues in older versions of
+Internet Explorer.
+
+    <p><img src="https://placekitten.com/g/200/300"></p>
+    <p><a href="#"><img src="https://placekitten.com/g/200/300"></a></p>
+
+ */
+img {
+  border: none;
+}
+/* # Utilities
+
+Utility classes are frequently used styling patterns. They are the only classes
+in this style sheet that are allowed to know anything about the child elements
+(although this should be limited to the immediate children using the direct
+decendant selector `>`). 
+*/
+/* ## Clearfix
+
+The micro clearfix popularised by [Nicholas
+Gallacher](http://nicolasgallagher.com/micro-clearfix-hack/). It simply makes
+the parent contain all floats.
+
+    <div class="u-clearfix" style="border: 1px dotted red; width: 250px;">
+        <div style="float: left; width: 100px;">alpha</div>
+        <div style="float: right; width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+.u-clearfix::before,
+.u-clearfix::after,
+.u-floated::before,
+.u-floated::after,
+.u-floatright::before,
+.u-floatright::after,
+.u-floatsplit::before,
+.u-floatsplit::after,
+.u-inlinelist::before,
+.u-inlinelist::after {
+  content: "";
+  display: block;
+}
+.u-clearfix::after,
+.u-floated::after,
+.u-floatright::after,
+.u-floatsplit::after,
+.u-inlinelist::after {
+  clear: both;
+}
+/* ## Self-contained floats
+
+Functionally identical to `u-clearfix` except that the children are
+automatically floated to the left.
+
+    <div class="u-floated" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+.u-floated > *,
+.u-inlinelist > * {
+  float: left;
+}
+/* ## Self-contained inverted floats
+
+Exactly the same as `u-floated` except that elements are floated to the right,
+not the left. Beware that this can appear to reverse the order of the elements.
+
+    <div class="u-floatright" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+.u-floatright > * {
+  float: right;
+}
+/* ## Self-contained split floats
+
+Designed primarily for an element containing **2** children, the first is
+floated to the left, the second is floated to the right.
+
+    <div class="u-floatsplit" style="border: 1px dotted red; width: 250px;">
+        <div style="width: 100px;">alpha</div>
+        <div style="width: 100px;">bravo<br>charlie</div>
+    </div>
+
+*/
+.u-floatsplit > :first-child {
+  float: left;
+}
+.u-floatsplit > :last-child {
+  float: right;
+}
+/* ## Bulletless lists
+
+Removes bullet points from a list. Works on unordered lists (`<ul>`) and ordered
+lists (`<ol>`) the same.
+
+    <ul class="u-bulletless">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+.u-bulletless,
+.u-inlinelist,
+.u-borderlist {
+  list-style-type: none;
+  margin-left: 0;
+}
+/* ## Inline lists
+
+Removes the bullet points from a list _and_ floats the list items.
+
+    <ul class="u-inlinelist">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+/* ## Border lists
+
+Makes the elements appear next to one-another and places a border in-between
+each of them.
+
+    <ul class="u-borderlist">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+.u-borderlist {
+  border-color: currentcolor;
+}
+.u-borderlist > * {
+  margin-left: 8.4px;
+  padding-left: 8.4px;
+  border-color: inherit;
+  border-left-style: solid;
+  border-width: 1px;
+}
+.u-borderlist > *:first-child {
+  border-left-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+/* ## Table-like layouts
+
+Makes the immediate children behave like `table-cell`s. This is not so useful on
+it's own, but acts like a base for `u-verttop`, `u-vertmid` and `u-vertbottom`.
+
+*/
+.u-table,
+.u-verttop,
+.u-vertmid,
+.u-vertbottom,
+.media {
+  display: table;
+}
+.u-table > *,
+.u-verttop > *,
+.u-vertmid > *,
+.u-vertbottom > *,
+.media > * {
+  display: table-cell;
+}
+/* ## Vertical alignments
+
+Vertically aligns test. There are three varients:
+
+- `u-verttop` - Vertically aligns at the top.
+- `u-vertmid` - Vertically aligns at the middle.
+- `u-vertbottom` - Vertically aligns at the bottom.
+
+    <div class="u-verttop" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+    <div class="u-vertmid" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+    <div class="u-vertbottom" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo<br>charlie</p>
+    </div>
+
+*/
+.u-verttop > *,
+.media > * {
+  vertical-align: top;
+}
+.u-vertmid > * {
+  vertical-align: middle;
+}
+.u-vertbottom > * {
+  vertical-align: bottom;
+}
+/* ## Reducers
+
+Removes the natural margin from the top of the first element and the bottom of
+the last one. Very handy for placing text within a box and having that box's
+`padding` be the only white space.
+
+    <div class="u-reduce" style="border: 1px dotted red; padding: 1em;">
+        <p>alpha</p>
+        <p>bravo</p>
+        <p>charlie</p>
+    </div>
+
+*/
+.u-reduce > :first-child {
+  margin-top: 0;
+}
+.u-reduce > :last-child {
+  margin-bottom: 0;
+}
+/* ## Margined elements.
+
+Mainly useful for creating space between list items.
+
+    <ul class="u-margined">
+        <li>alpha</li>
+        <li>bravo</li>
+        <li>charlie</li>
+    </ul>
+
+*/
+.u-margined > * {
+  margin-bottom: 8.4px;
+}
+.u-margined > *:last-child {
+  margin-bottom: 0;
+}
+/* # Modules
+
+Code from here on describes modules. Each module is designed to be stand-alone,
+meaning that it has no other module dependancies (although it may rely on base
+rules, utilities and helper classes.
+*/
+/* ## Input boxes
+
+Controls the styling of input boxes.
+
+The basic `noinput` class creates an input that appears invisible. The more
+regular `input` class adding all the expected styling to an input box.
+
+    <p><input type="text" value="Unstyled"></p>
+    <p><input type="text" value="Invisible" class="noinput"></p>
+    <p><input type="text" value="Styled" class="input"></p>
+
+*/
+.noinput,
+.input {
+  -moz-appearance: textfield;
+  border: none;
+  display: inline-block;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+.noinput::-webkit-outer-spin-button,
+.noinput::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.noinput::-webkit-input-placeholder,
+.input::-webkit-input-placeholder {
+  color: #999999;
+}
+.noinput:-moz-placeholder,
+.input:-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.noinput::-moz-placeholder,
+.input::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+.noinput:-ms-input-placeholder,
+.input:-ms-input-placeholder {
+  color: #999999;
+}
+.noinput:focus,
+.input:focus {
+  outline: none;
+}
+.input {
+  padding: 4.2px 8.4px;
+  border: 1px solid #cccccc;
+}
+.input:focus {
+  border-color: #ff0000;
+}
+.input-full {
+  width: 100%;
+}
+/* ## Buttons
+
+Simply CSS-based buttons. Designed to work on anchors (`<a>`), buttons
+(`<button>`) and spans (`<span>`) the same. Be aware that is it **not** designed
+to work with `<input type="submit">` - use `<button type="submit">` instead.
+
+    <p><a href="#" class="button">Anchor</a></p>
+    <p><button type="button" class="button">Button</button></p>
+    <p><span class="button">span</span></p>
+
+*/
+.nobutton,
+.button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.nobutton::-moz-focus-inner,
+.button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+.nobutton:focus,
+.nobutton:hover,
+.nobutton.is-hover,
+.button:focus,
+.button:hover,
+.button.is-hover {
+  text-decoration: none;
+}
+.button {
+  padding: 4.2px 8.4px;
+  background-color: #e6e6e6;
+  color: #666666;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  white-space: nowrap;
+}
+.button:active,
+.button.is-active {
+  background-image: none;
+  box-shadow: inset 0 3.5px 7px rgba(0, 0, 0, 0.125);
+  outline: 0;
+}
+.button[disabled],
+.button.is-disabled {
+  cursor: not-allowed, default;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.button-success {
+  background-color: #5cb85c;
+  color: #ffffff;
+}
+.button-success:focus,
+.button-success:hover,
+.button-success.is-hover {
+  background-color: #77c477;
+}
+.button-success:active,
+.button-success.is-active {
+  background-color: #4cae4c;
+}
+.button-info {
+  background-color: #5bc0de;
+  color: #ffffff;
+}
+.button-info:focus,
+.button-info:hover,
+.button-info.is-hover {
+  background-color: #7bcce4;
+}
+.button-info:active,
+.button-info.is-active {
+  background-color: #46b8da;
+}
+.button-warning {
+  background-color: #f0ad4e;
+  color: #ffffff;
+}
+.button-warning:focus,
+.button-warning:hover,
+.button-warning.is-hover {
+  background-color: #f3bd71;
+}
+.button-warning:active,
+.button-warning.is-active {
+  background-color: #eea236;
+}
+.button-danger {
+  background-color: #d9534f;
+  color: #ffffff;
+}
+.button-danger:focus,
+.button-danger:hover,
+.button-danger.is-hover {
+  background-color: #e0726e;
+}
+.button-danger:active,
+.button-danger.is-active {
+  background-color: #d43f3a;
+}
+.button-primary {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+.button-primary:focus,
+.button-primary:hover,
+.button-primary.is-hover {
+  background-color: #ff2626;
+}
+.button-primary:active,
+.button-primary.is-active {
+  background-color: #e60000;
+}
+.button-secondary {
+  background-color: #00ff00;
+  color: #ffffff;
+}
+.button-secondary:focus,
+.button-secondary:hover,
+.button-secondary.is-hover {
+  background-color: #26ff26;
+}
+.button-secondary:active,
+.button-secondary.is-active {
+  background-color: #00e600;
+}
+.button-tertiary {
+  background-color: #0000ff;
+  color: #ffffff;
+}
+.button-tertiary:focus,
+.button-tertiary:hover,
+.button-tertiary.is-hover {
+  background-color: #2626ff;
+}
+.button-tertiary:active,
+.button-tertiary.is-active {
+  background-color: #0000e6;
+}
+.button-quaternary {
+  background-color: #ffff00;
+  color: #ffffff;
+}
+.button-quaternary:focus,
+.button-quaternary:hover,
+.button-quaternary.is-hover {
+  background-color: #ffff26;
+}
+.button-quaternary:active,
+.button-quaternary.is-active {
+  background-color: #e5e600;
+}
+/* ## Media Object
+
+As popularised by [Nichole
+Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/),
+the media object places an image next to text. The image width does not need to
+be known and the text will fill the remaining space.
+
+The basic media object is an image on the left followed by text:
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">(text)</div>
+    </div>
+
+An image on the right is possible.
+
+    <div class="media">
+        <div class="media_body">(text)</div>
+        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+It is possible to place an image on both the left and the right.
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">(text)</div>
+        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+Media objects are nestable.
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">
+
+            (text)
+
+            <div class="media">
+                <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+                <div class="media_body">(text)</div>
+            </div>
+
+        </div>
+    </div>
+
+ */
+.media_left,
+.media_right {
+  width: 0;
+}
+.media_body {
+  width: 100%;
+}
+.media_right,
+.media_padleft {
+  padding-left: 8.4px;
+}
+.media_left,
+.media_padright {
+  padding-right: 8.4px;
+}
+/* # Helper classes
+
+Helper classes are designed to override modules in a site-consisten way. They
+override one or two styles at a time, mainly existing to remove the strain from
+the modules as well as being able to fix small rendering errors quickly.
+*/
+/* ## Text colours
+
+Designed as helper classes, written at the end of the style sheet so that they
+can override modules if necessary. They simply set the text colour to the
+defined class.
+
+    <p class="t-white">"white" colour</p>
+    <p class="t-lighter-grey">"lighter-grey" colour</p>
+    <p class="t-light-grey">"light-grey" colour</p>
+    <p class="t-grey">"grey" colour</p>
+    <p class="t-dark-grey">"dark-grey" colour</p>
+    <p class="t-darker-grey">"darker-grey" colour</p>
+    <p class="t-darkest-grey">"darkest-grey" colour</p>
+    <p class="t-black">"black" colour</p>
+
+    <p class="t-success">"success" colour</p>
+    <p class="t-info">"info" colour</p>
+    <p class="t-warning">"warning" colour</p>
+    <p class="t-danger">"danger" colour</p>
+    <p class="t-primary">"primary" colour</p>
+    <p class="t-secondary">"secondary" colour</p>
+    <p class="t-tertiary">"tertiary" colour</p>
+    <p class="t-quaternary">"quaternary" colour</p>
+
+## Background colours
+
+Like the text colours, these colours allow elements to gain the background
+colour specified.
+
+    <div class="b-white">"white" colour</div>
+    <div class="b-lighter-grey">"lighter-grey" colour</div>
+    <div class="b-light-grey">"light-grey" colour</div>
+    <div class="b-grey">"grey" colour</div>
+    <div class="b-dark-grey">"dark-grey" colour</div>
+    <div class="b-darker-grey">"darker-grey" colour</div>
+    <div class="b-darkest-grey">"darkest-grey" colour</div>
+    <div class="b-black">"black" colour</div>
+
+    <div class="b-success">"success" colour</div>
+    <div class="b-info">"info" colour</div>
+    <div class="b-warning">"warning" colour</div>
+    <div class="b-danger">"danger" colour</div>
+    <div class="b-primary">"primary" colour</div>
+    <div class="b-secondary">"secondary" colour</div>
+    <div class="b-tertiary">"tertiary" colour</div>
+    <div class="b-quaternary">"quaternary" colour</div>
+
+ */
+.t-white {
+  color: #ffffff;
+}
+.b-white {
+  background-color: #ffffff;
+}
+.t-lighter-grey {
+  color: #e6e6e6;
+}
+.b-lighter-grey {
+  background-color: #e6e6e6;
+}
+.t-light-grey {
+  color: #cccccc;
+}
+.b-light-grey {
+  background-color: #cccccc;
+}
+.t-grey {
+  color: #999999;
+}
+.b-grey {
+  background-color: #999999;
+}
+.t-dark-grey {
+  color: #666666;
+}
+.b-dark-grey {
+  background-color: #666666;
+}
+.t-darker-grey {
+  color: #333333;
+}
+.b-darker-grey {
+  background-color: #333333;
+}
+.t-darkest-grey {
+  color: #191919;
+}
+.b-darkest-grey {
+  background-color: #191919;
+}
+.t-black {
+  color: #000000;
+}
+.b-black {
+  background-color: #000000;
+}
+.t-success {
+  color: #5cb85c;
+}
+.b-success {
+  background-color: #5cb85c;
+}
+.t-info {
+  color: #5bc0de;
+}
+.b-info {
+  background-color: #5bc0de;
+}
+.t-warning {
+  color: #f0ad4e;
+}
+.b-warning {
+  background-color: #f0ad4e;
+}
+.t-danger {
+  color: #d9534f;
+}
+.b-danger {
+  background-color: #d9534f;
+}
+.t-secondary {
+  color: #00ff00;
+}
+.b-secondary {
+  background-color: #00ff00;
+}
+.t-tertiary {
+  color: #0000ff;
+}
+.b-tertiary {
+  background-color: #0000ff;
+}
+.t-quaternary {
+  color: #ffff00;
+}
+.b-quaternary {
+  background-color: #ffff00;
+}

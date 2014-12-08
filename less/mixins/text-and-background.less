@@ -1,0 +1,66 @@
+// .text-and-background(@colour-name)
+// -----------------------------------------------------------------------------
+// 
+// @colour-name {string} Name of LESS variable containing a colour.
+// 
+// Creates the text and background helper classes for a specific colour. Be
+// aware that @colour-name has to exist as a variable.
+// 
+// Examples:
+// 
+// Assuming that @primary: #F00; and @white: #FFF;
+// 
+//      // LESS
+//      .text-and-background(primary);
+//      
+//      /* CSS */
+//      .t-primary {
+//        color: #ff0000;
+//      }
+//      
+//      .b-primary {
+//        background-color: #ff0000;
+//      }
+// 
+// This mixin has 2 "gotchas". The first is that the name of the variable must
+// be passed to the mixin, not the variable itself:
+// 
+//      .text-and-background(@primary);
+//      // Syntax error: variable @undefined is undefined
+// 
+// This is because LESS automatically converts the variable @primary to the
+// colour literal #ff0000 and there is no "@#ff0000" variable.
+// 
+// The second gotcha is that CSS colour constants must be escaped.
+// 
+//      .text-and-background(white);
+//      // Syntax error: variable @undefined is undefined
+//
+// As before, this is caused by "white" being automatically converted to #ffffff
+// and there is no "@#ffffff" variable. To use CSS colour constants, pass them
+// as escaped strings:
+// 
+//      // LESS
+//      .text-and-background(~"white");
+//      
+//      /* CSS */
+//      .t-white {
+//        color: #ffffff;
+//      }
+//      
+//      .b-white {
+//        background-color: #ffffff;
+//      }
+// 
+
+.text-and-background(@colour-name) {
+
+    .t-@{colour-name} {
+        color: @@colour-name;
+    }
+
+    .b-@{colour-name} {
+        background-color: @@colour-name;
+    }
+
+}

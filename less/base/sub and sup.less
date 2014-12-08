@@ -1,0 +1,27 @@
+/* ## Sub-text and Super-text
+
+Prevent `sub` and `sup` affecting `line-height` in all browsers. Taken from
+[Normalize.css](http://necolas.github.io/normalize.css/).
+
+    <p>Normal text<br>
+        and line-height.</p>
+    <p>H<sub>2</sub>0<br>
+        x<sup>2</sup></p>
+
+ */
+
+sub,
+sup {
+    font-size:      0.75em;
+    line-height:    0;
+    position:       relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}

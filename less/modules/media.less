@@ -1,0 +1,69 @@
+/* ## Media Object
+
+As popularised by [Nichole
+Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/),
+the media object places an image next to text. The image width does not need to
+be known and the text will fill the remaining space.
+
+The basic media object is an image on the left followed by text:
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">(text)</div>
+    </div>
+
+An image on the right is possible.
+
+    <div class="media">
+        <div class="media_body">(text)</div>
+        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+It is possible to place an image on both the left and the right.
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">(text)</div>
+        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+Media objects are nestable.
+
+    <div class="media">
+        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="media_body">
+
+            (text)
+
+            <div class="media">
+                <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
+                <div class="media_body">(text)</div>
+            </div>
+
+        </div>
+    </div>
+
+ */
+
+.media {
+    &:extend(.u-verttop all);
+}
+
+.media_left,
+.media_right {
+    width: 0;
+}
+
+.media_body {
+    width: 100%;
+}
+
+.media_right,
+.media_padleft {
+    .unit(padding-left, 0.5);
+}
+
+.media_left,
+.media_padright {
+    .unit(padding-right, 0.5);
+}
