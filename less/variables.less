@@ -26,27 +26,55 @@
 // Colours
 // -----------------------------------------------------------------------------
 
-@white:         darken(#FFF,   0); // #FFFFFF
-@lighter-grey:  darken(#FFF,  10); // #E6E6E6   
-@light-grey:    darken(#FFF,  20); // #CCCCCC
-@grey:          darken(#FFF,  40); // #999999
-@dark-grey:     darken(#FFF,  60); // #666666
-@darker-grey:   darken(#FFF,  80); // #333333
-@darkest-grey:  darken(#FFF,  90); // #191919
-@black:         darken(#FFF, 100); // #000000
+// Always comment after the colour hex code with the colour name - it helps
+// work out what the colour is quickly.
+
+@white:             darken(#FFF,   0); // #FFFFFF
+@lightest-grey:     darken(#FFF,  10); // #E6E6E6   
+@lighter-grey:      darken(#FFF,  20); // #CCCCCC
+@light-grey:        darken(#FFF,  40); // #999999
+@grey:              darken(#FFF,  50); // #808080
+@dark-grey:         darken(#FFF,  60); // #666666
+@darker-grey:       darken(#FFF,  80); // #333333
+@darkest-grey:      darken(#FFF,  90); // #191919
+@black:             darken(#FFF, 100); // #000000
 
 @success:       #5CB85C; // Green
 @info:          #5BC0DE; // Blue
 @warning:       #F0AD4E; // Yellow
 @danger:        #D9534F; // Red
 
-@primary:       #F00;
-@secondary:     #0F0;
-@tertiary:      #00F;
-@quaternary:    #FF0;
-//@quinary:       #F0F;
-//@senary:        #0FF;
-//@septenary:     #FFF;
-//@octonary:      #000;
-//@nonary:        #CCC;
-//@denary:        #999;
+// Uncommenting one of the colours? Uncomment the associated rules in:
+// - modules/button.less
+// - helper/text and background.less
+
+@primary:       #F00; // Red
+@secondary:     #0F0; // Green
+@tertiary:      #00F; // Blue
+@quaternary:    #FF0; // Yellow
+//@quinary:       #F0F; // Purple
+//@senary:        #0FF; // Cyan
+//@septenary:     #FFF; // White
+//@octonary:      #000; // Black
+//@nonary:        #CCC; // Light grey
+//@denary:        #999; // Mid grey
+
+
+// Media queries
+// ----------------------------------------------------------------------------
+
+@screen-xs:     480px;
+@screen-sm:     768px;
+@screen-md:     960px;
+@screen-lg:     1200px;
+
+@screen-xs-max:     @screen-sm - 1;
+@screen-sm-max:     @screen-md - 1;
+@screen-md-max:     @screen-lg - 1;
+
+
+// Grid system
+// ----------------------------------------------------------------------------
+
+@grid-columns:      12;
+@grid-gutter:       30px;
