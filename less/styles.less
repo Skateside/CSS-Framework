@@ -9,7 +9,7 @@
 // 
 // These includes help set up the style sheet.
 
-@import "variables.less";
+@import "variables";
 
 
 // Mixins
@@ -17,9 +17,9 @@
 // 
 // These includes help create the style sheet.
 
-@import "mixins/unit.less";
-@import "mixins/button-variant.less";
-@import "mixins/text-and-background.less";
+@import "mixins/unit";
+@import "mixins/button-variant";
+@import "mixins/text-and-background";
 
 
 // Base files
@@ -35,13 +35,13 @@ restriction helps contain the styling to a module and allows for easier
 sub-classes of modules. It also enables the surgical classes (below) to work.
 */
 
-@import "base/universal.less";
-@import "base/basic fonts.less";
-@import "base/block-level elements.less";
-@import "base/headings.less";
-@import "base/tables.less";
-@import "base/sub and sup.less";
-@import "base/images.less";
+@import "base/universal";
+@import "base/basic fonts";
+@import "base/block-level elements";
+@import "base/headings";
+@import "base/tables";
+@import "base/sub and sup";
+@import "base/images";
 
 
 // Utilities
@@ -57,12 +57,30 @@ in this style sheet that are allowed to know anything about the child elements
 decendant selector `>`). 
 */
 
-@import "utilities/clearfix.less";
-@import "utilities/floated.less";
-@import "utilities/lists.less";
-@import "utilities/vertical align.less";
-@import "utilities/reduce.less";
-@import "utilities/margined.less";
+@import "utilities/clearfix";
+@import "utilities/floated";
+@import "utilities/lists";
+@import "utilities/vertical align";
+@import "utilities/reduce";
+@import "utilities/margined";
+
+
+// Layout
+// -----------------------------------------------------------------------------
+// 
+// Layout classes are designed to position elements. They sit before the modules
+// so that module classes can override the styles if necessary, but this is not
+// essential.
+
+/* # Layout
+
+Structural classes. They are all prefixed with `l-` to separate them from 
+modules.
+
+*/
+
+@import "layout/media";
+@import "layout/grid";
 
 
 // Modules
@@ -75,12 +93,12 @@ decendant selector `>`).
 
 Code from here on describes modules. Each module is designed to be stand-alone,
 meaning that it has no other module dependancies (although it may rely on base
-rules, utilities and helper classes.
+rules, utility, layout and helper classes).
 */
 
-@import "modules/input.less";
-@import "modules/button.less";
-@import "modules/media.less";
+@import "modules/input";
+@import "modules/button";
+//@import "modules/media";
 
 
 // Helper classes
@@ -95,4 +113,4 @@ override one or two styles at a time, mainly existing to remove the strain from
 the modules as well as being able to fix small rendering errors quickly.
 */
 
-@import "helper/text and background.less";
+@import "helper/text and background";

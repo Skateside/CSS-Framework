@@ -1,0 +1,90 @@
+/* # Media Object
+
+As popularised by [Nichole
+Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/),
+the media object places an image next to text. The image width does not need to
+be known and the text will fill the remaining space.
+
+The basic media object is an image on the left followed by text:
+
+    <div class="l-media">
+        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media_body">(text)</div>
+    </div>
+
+An image on the right is possible.
+
+    <div class="l-media">
+        <div class="l-media_body">(text)</div>
+        <div class="l-media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+It is possible to place an image on both the left and the right.
+
+    <div class="l-media">
+        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media_body">(text)</div>
+        <div class="l-media_right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+Media objects are nestable.
+
+    <div class="l-media">
+        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media_body">
+
+            (text)
+
+            <div class="l-media">
+                <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+                <div class="l-media_body">(text)</div>
+            </div>
+
+        </div>
+    </div>
+
+By default the content of media objects aligns vertically to the top,
+`l-media-middle` and `l-media-bottom` exist to adjust the alignment.
+
+    <div class="l-media l-media-middle">
+        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media_body">(text)</div>
+    </div>
+
+    <div class="l-media l-media-bottom">
+        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media_body">(text)</div>
+    </div>
+
+ */
+
+.l-media {
+    &:extend(.u-verttop all);
+}
+
+.l-media-middle {
+    vertical-align: middle;
+}
+
+.l-media-bottom {
+    vertical-align: bottom;
+}
+
+.l-media_left,
+.l-media_right {
+    width: 0;
+}
+
+.l-media_body {
+    width: 100%:
+}
+
+.l-media_right,
+.l-media_padleft {
+    .unit(padding-left, 0.5);
+}
+
+.l-media_left,
+.l-media_padright {
+    .unit(padding-right, 0.5);
+}
