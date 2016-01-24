@@ -1,89 +1,119 @@
+/* ## Grid
 
-#grid {
+The grid system defines columns for content. All columns have padding to
+generate gutters. By default there are 12 columns in a grid, but this can be
+configured in the variables.
 
-    .column(@units, @columns, @size) {
-
-        @selector: ~".l-grid_@{size}_@{units}";
-
-        @{selector} {
-            min-height:    1px;
-            padding-left:  (@grid-gutter / 2);
-            padding-right: (@grid-gutter / 2);
-            width:         unit(@units * (100 / @columns), ~"%");
-        }
-
-    }
-
-    .push(@units, @columns, @size) when (@units > 0) {
-
-        @selector: ~".l-grid_push_@{size}_@{units}";
-
-        @{selector} {
-            margin-left: unit(@units * (100 / @columns), ~"%");
-        }
-
-    }
-
-    .pull(@units, @columns, @size) when (@units > 0) {
-
-        @selector: ~".l-grid_pull_@{size}_@{units}";
-
-        @{selector} {
-            margin-left: -unit(@units * (100 / @columns), ~"%");
-        }
-
-    }
-
-    .size(@units, @columns, @size) {
-
-        #grid > .column(@units,     @columns, @size);
-        #grid > .push(  @units - 1, @columns, @size);
-        #grid > .pull(  @units - 1, @columns, @size);
-
-    }
-
-    .loop(@index, @columns, @size) when (@index > 0) {
-
-        #grid > .size(@index, @columns, @size);
-        #grid > .loop(@index - 1, @columns, @size);
-
-    }
-
-    .make(@columns, @size) {
-        #grid > .loop(@columns - 1, @columns, @size);
-    }
-
-}
-
-/*
+### Main grid example.
 
     <div class="l-grid">
-        <div class="l-grid_md_6"></div>
-        <div class="l-grid_md_4"></div>
-        <div class="l-grid_md_2"></div>
+        <div class="l-grid-12">12</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-1">1</div>
+        <div class="l-grid-11">11</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-2">2</div>
+        <div class="l-grid-10">10</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-3">3</div>
+        <div class="l-grid-9">9</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-4">4</div>
+        <div class="l-grid-8">8</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-5">5</div>
+        <div class="l-grid-7">7</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-6">6</div>
+        <div class="l-grid-6">6</div>
+    </div>
+
+### Responsive grids
+
+A column can be set to start working at a certain break point by using the `@`
+rules:
+
+    <div class="l-grid">
+        <div class="l-grid-6 l-grid-4@md">6 by default, 4 on large screens</div>
+        <div class="l-grid-6 l-grid-8@md">6 by default, 8 on large screens</div>
+    </div>
+
+
+### Offsetting
+
+Grid columns can be offset by a column.
+
+    <div class="l-grid">
+        <div class="l-grid-1 l-grid-offset-11">1 (offset 11)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-2 l-grid-offset-10">2 (offset 10)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-3 l-grid-offset-9">3 (offset 9)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-4 l-grid-offset-8">4 (offset 8)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-5 l-grid-offset-7">5 (offset 7)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-6 l-grid-offset-6">6 (offset 6)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-7 l-grid-offset-5">7 (offset 5)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-8 l-grid-offset-4">8 (offset 4)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-9 l-grid-offset-3">9 (offset 3)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-10 l-grid-offset-2">10 (offset 2)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-11 l-grid-offset-1">11 (offset 1)</div>
+    </div>
+
+### Re-ordering
+
+The column order can be set using the `l-grid-order-*` classes.
+
+   <div class="l-grid">
+        <div class="l-grid-1 l-grid-order-7">1</div>
+        <div class="l-grid-1 l-grid-order-10">2</div>
+        <div class="l-grid-1 l-grid-order-8">3</div>
+        <div class="l-grid-1 l-grid-order-4">4</div>
+        <div class="l-grid-1 l-grid-order-6">5</div>
+        <div class="l-grid-1 l-grid-order-1">6</div>
+        <div class="l-grid-1 l-grid-order-2">7</div>
+        <div class="l-grid-1 l-grid-order-9">8</div>
+        <div class="l-grid-1 l-grid-order-11">9</div>
+        <div class="l-grid-1 l-grid-order-3">10</div>
+        <div class="l-grid-1 l-grid-order-12">11</div>
+        <div class="l-grid-1 l-grid-order-5">12</div>
     </div>
 
  */
 
-.l-grid {
+#grid > .make(@grid-columns, "");
 
-    &:extend(.u-floated all);
-
-    margin-left:  -(@grid-gutter / 2);
-    margin-right: -(@grid-gutter / 2);
-
+@media (min-width: @screen-sm-min) {
+    #grid > .make(@grid-columns, "\@sm");
 }
 
-#grid > .make(@grid-columns, xs);
-
-@media (min-width: @screen-xs) {
-    #grid > .make(@grid-columns, sm);
+@media (min-width: @screen-md-min) {
+    #grid > .make(@grid-columns, "\@md");
 }
 
-@media (min-width: @screen-sm) {
-    #grid > .make(@grid-columns, md);
-}
-
-@media (min-width: @screen-md) {
-    #grid > .make(@grid-columns, lg);
+@media (min-width: @screen-lg-min) {
+    #grid > .make(@grid-columns, "\@lg");
 }

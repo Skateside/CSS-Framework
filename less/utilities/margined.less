@@ -10,16 +10,12 @@ Mainly useful for creating space between list items.
 
 */
 
-.u-margined {
+.u-margined > * {
 
-    > * {
+    margin-bottom: (@line-height-computed * 0.5);
 
-        .unit(margin-bottom, 0.5);
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
+    &:last-child {
+        margin-bottom: 0;
     }
 
 }

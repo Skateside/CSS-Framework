@@ -8,36 +8,36 @@ be known and the text will fill the remaining space.
 The basic media object is an image on the left followed by text:
 
     <div class="l-media">
-        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="l-media_body">(text)</div>
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
     </div>
 
 An image on the right is possible.
 
     <div class="l-media">
-        <div class="l-media_body">(text)</div>
-        <div class="l-media_right"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+        <div class="l-media-right"><img src="http://placekitten.com/g/50/50"></div>
     </div>
 
 It is possible to place an image on both the left and the right.
 
     <div class="l-media">
-        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="l-media_body">(text)</div>
-        <div class="l-media_right"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+        <div class="l-media-right"><img src="http://placekitten.com/g/50/50"></div>
     </div>
 
 Media objects are nestable.
 
     <div class="l-media">
-        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="l-media_body">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">
 
             (text)
 
             <div class="l-media">
-                <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-                <div class="l-media_body">(text)</div>
+                <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+                <div class="l-media-body">(text)</div>
             </div>
 
         </div>
@@ -46,14 +46,14 @@ Media objects are nestable.
 By default the content of media objects aligns vertically to the top,
 `l-media-middle` and `l-media-bottom` exist to adjust the alignment.
 
-    <div class="l-media l-media-middle">
-        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="l-media_body">(text)</div>
+    <div class="l-media l-media--middle">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
     </div>
 
-    <div class="l-media l-media-bottom">
-        <div class="l-media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="l-media_body">(text)</div>
+    <div class="l-media l-media--bottom">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
     </div>
 
  */
@@ -62,29 +62,29 @@ By default the content of media objects aligns vertically to the top,
     &:extend(.u-verttop all);
 }
 
-.l-media-middle {
-    vertical-align: middle;
+.l-media--middle {
+    align-items: center;
 }
 
-.l-media-bottom {
-    vertical-align: bottom;
+.l-media--bottom {
+    align-items: flex-end;
 }
 
-.l-media_left,
-.l-media_right {
-    width: 0;
+.l-media-left,
+.l-media-right {
+    flex-shrink: 1;
 }
 
-.l-media_body {
-    width: 100%:
+.l-media-body {
+    flex-grow: 1;
 }
 
-.l-media_right,
-.l-media_padleft {
-    .unit(padding-left, 0.5);
+.l-media-right,
+.l-media-padleft {
+    padding-left: (@line-height-computed * 0.5);
 }
 
-.l-media_left,
-.l-media_padright {
-    .unit(padding-right, 0.5);
+.l-media-left,
+.l-media-padright {
+    padding-right: (@line-height-computed * 0.5);
 }

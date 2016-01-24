@@ -40,38 +40,36 @@ body {
   color: #333333;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.42857143;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
 p,
 ul,
 ol,
 dl,
 blockquote,
 pre {
-  margin-bottom: 16.8px;
+  margin-bottom: 20px;
 }
 ul,
 ol {
-  margin-left: 16.8px;
+  margin-left: 20px;
 }
 abbr[title] {
   border-bottom: 1px dotted;
+  cursor: help;
 }
 b,
 strong {
   font-weight: bold;
+}
+a {
+  color: #F00;
+  text-decoration: none;
+}
+a:focus,
+a:hover {
+  color: #cc0000;
+  text-decoration: underline;
 }
 /* ## Block-level Elements
 
@@ -157,10 +155,11 @@ h6,
 .h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 h1,
 .h1 {
-  font-size: 32.2px;
+  font-size: 32px;
 }
 h2,
 .h2 {
@@ -168,7 +167,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 25.2px;
+  font-size: 25px;
 }
 h4,
 .h4 {
@@ -176,11 +175,11 @@ h4,
 }
 h5,
 .h5 {
-  font-size: 18.2px;
+  font-size: 18px;
 }
 h6,
 .h6 {
-  font-size: 16.1px;
+  font-size: 16px;
 }
 .h0 {
   font-family: inherit;
@@ -251,9 +250,25 @@ Internet Explorer.
     <p><img src="https://placekitten.com/g/200/300"></p>
     <p><a href="#"><img src="https://placekitten.com/g/200/300"></a></p>
 
+The `img` class makes the image scale to the container.
+
+    <div style="border:1px solid red; width:250px;">
+        <img src="https://placekitten.com/g/200/300" class="img">
+    </div>
+    <div style="border:1px solid red; width:100px;">
+        <img src="https://placekitten.com/g/200/300" class="img">
+    </div>
+
  */
 img {
   border: none;
+}
+.img {
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
 }
 /* # Utilities
 
@@ -281,17 +296,14 @@ the parent contain all floats.
 .u-floatright::before,
 .u-floatright::after,
 .u-floatsplit::before,
-.u-floatsplit::after,
-.u-inlinelist::before,
-.u-inlinelist::after {
+.u-floatsplit::after {
   content: "";
   display: block;
 }
 .u-clearfix::after,
 .u-floated::after,
 .u-floatright::after,
-.u-floatsplit::after,
-.u-inlinelist::after {
+.u-floatsplit::after {
   clear: both;
 }
 /* ## Self-contained floats
@@ -305,8 +317,7 @@ automatically floated to the left.
     </div>
 
 */
-.u-floated > *,
-.u-inlinelist > * {
+.u-floated > * {
   float: left;
 }
 /* ## Self-contained inverted floats
@@ -369,6 +380,18 @@ Removes the bullet points from a list _and_ floats the list items.
     </ul>
 
 */
+.u-inlinelist,
+.u-borderlist {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
 /* ## Border lists
 
 Makes the elements appear next to one-another and places a border in-between
@@ -385,36 +408,16 @@ each of them.
   border-color: currentcolor;
 }
 .u-borderlist > * {
-  margin-left: 8.4px;
-  padding-left: 8.4px;
   border-color: inherit;
   border-left-style: solid;
   border-width: 1px;
+  margin-left: 10px;
+  padding-left: 10px;
 }
 .u-borderlist > *:first-child {
   border-left-style: none;
   margin-left: 0;
   padding-left: 0;
-}
-/* ## Table-like layouts
-
-Makes the immediate children behave like `table-cell`s. This is not so useful on
-it's own, but acts like a base for `u-verttop`, `u-vertmid` and `u-vertbottom`.
-
-*/
-.u-table,
-.u-verttop,
-.u-vertmid,
-.u-vertbottom,
-.media {
-  display: table;
-}
-.u-table > *,
-.u-verttop > *,
-.u-vertmid > *,
-.u-vertbottom > *,
-.media > * {
-  display: table-cell;
 }
 /* ## Vertical alignments
 
@@ -440,15 +443,53 @@ Vertically aligns test. There are three varients:
     </div>
 
 */
-.u-verttop > *,
-.media > * {
-  vertical-align: top;
+.u-verttop,
+.l-media {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
-.u-vertmid > * {
-  vertical-align: middle;
+.u-vertmid,
+.u-vertmiddle {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
-.u-vertbottom > * {
-  vertical-align: bottom;
+.u-vertbot,
+.u-vertbottom {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /* ## Reducers
 
@@ -481,16 +522,948 @@ Mainly useful for creating space between list items.
 
 */
 .u-margined > * {
-  margin-bottom: 8.4px;
+  margin-bottom: 10px;
 }
 .u-margined > *:last-child {
   margin-bottom: 0;
+}
+/* # Layout
+
+Structural classes. They are all prefixed with `l-` to separate them from 
+modules.
+
+*/
+/* # Media Object
+
+As popularised by [Nichole
+Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/),
+the media object places an image next to text. The image width does not need to
+be known and the text will fill the remaining space.
+
+The basic media object is an image on the left followed by text:
+
+    <div class="l-media">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+    </div>
+
+An image on the right is possible.
+
+    <div class="l-media">
+        <div class="l-media-body">(text)</div>
+        <div class="l-media-right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+It is possible to place an image on both the left and the right.
+
+    <div class="l-media">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+        <div class="l-media-right"><img src="http://placekitten.com/g/50/50"></div>
+    </div>
+
+Media objects are nestable.
+
+    <div class="l-media">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">
+
+            (text)
+
+            <div class="l-media">
+                <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+                <div class="l-media-body">(text)</div>
+            </div>
+
+        </div>
+    </div>
+
+By default the content of media objects aligns vertically to the top,
+`l-media-middle` and `l-media-bottom` exist to adjust the alignment.
+
+    <div class="l-media l-media--middle">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+    </div>
+
+    <div class="l-media l-media--bottom">
+        <div class="l-media-left"><img src="http://placekitten.com/g/50/50"></div>
+        <div class="l-media-body">(text)</div>
+    </div>
+
+ */
+.l-media--middle {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.l-media--bottom {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.l-media-left,
+.l-media-right {
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+}
+.l-media-body {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.l-media-right,
+.l-media-padleft {
+  padding-left: 10px;
+}
+.l-media-left,
+.l-media-padright {
+  padding-right: 10px;
+}
+/* ## Grid
+
+The grid system defines columns for content. All columns have padding to
+generate gutters. By default there are 12 columns in a grid, but this can be
+configured in the variables.
+
+### Main grid example.
+
+    <div class="l-grid">
+        <div class="l-grid-12">12</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-1">1</div>
+        <div class="l-grid-11">11</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-2">2</div>
+        <div class="l-grid-10">10</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-3">3</div>
+        <div class="l-grid-9">9</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-4">4</div>
+        <div class="l-grid-8">8</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-5">5</div>
+        <div class="l-grid-7">7</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-6">6</div>
+        <div class="l-grid-6">6</div>
+    </div>
+
+### Responsive grids
+
+A column can be set to start working at a certain break point by using the `@`
+rules:
+
+    <div class="l-grid">
+        <div class="l-grid-6 l-grid-4@md">6 by default, 4 on large screens</div>
+        <div class="l-grid-6 l-grid-8@md">6 by default, 8 on large screens</div>
+    </div>
+
+
+### Offsetting
+
+Grid columns can be offset by a column.
+
+    <div class="l-grid">
+        <div class="l-grid-1 l-grid-offset-11">1 (offset 11)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-2 l-grid-offset-10">2 (offset 10)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-3 l-grid-offset-9">3 (offset 9)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-4 l-grid-offset-8">4 (offset 8)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-5 l-grid-offset-7">5 (offset 7)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-6 l-grid-offset-6">6 (offset 6)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-7 l-grid-offset-5">7 (offset 5)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-8 l-grid-offset-4">8 (offset 4)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-9 l-grid-offset-3">9 (offset 3)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-10 l-grid-offset-2">10 (offset 2)</div>
+    </div>
+    <div class="l-grid">
+        <div class="l-grid-11 l-grid-offset-1">11 (offset 1)</div>
+    </div>
+
+### Re-ordering
+
+The column order can be set using the `l-grid-order-*` classes.
+
+   <div class="l-grid">
+        <div class="l-grid-1 l-grid-order-7">1</div>
+        <div class="l-grid-1 l-grid-order-10">2</div>
+        <div class="l-grid-1 l-grid-order-8">3</div>
+        <div class="l-grid-1 l-grid-order-4">4</div>
+        <div class="l-grid-1 l-grid-order-6">5</div>
+        <div class="l-grid-1 l-grid-order-1">6</div>
+        <div class="l-grid-1 l-grid-order-2">7</div>
+        <div class="l-grid-1 l-grid-order-9">8</div>
+        <div class="l-grid-1 l-grid-order-11">9</div>
+        <div class="l-grid-1 l-grid-order-3">10</div>
+        <div class="l-grid-1 l-grid-order-12">11</div>
+        <div class="l-grid-1 l-grid-order-5">12</div>
+    </div>
+
+ */
+.l-grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.l-grid-12 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+.l-grid-order-12 {
+  -webkit-box-ordinal-group: 13;
+  -webkit-order: 12;
+      -ms-flex-order: 12;
+          order: 12;
+}
+.l-grid-11 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 91.66666667%;
+}
+.l-grid-offset-11 {
+  margin-left: 91.66666667%;
+}
+.l-grid-order-11 {
+  -webkit-box-ordinal-group: 12;
+  -webkit-order: 11;
+      -ms-flex-order: 11;
+          order: 11;
+}
+.l-grid-10 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 83.33333333%;
+}
+.l-grid-offset-10 {
+  margin-left: 83.33333333%;
+}
+.l-grid-order-10 {
+  -webkit-box-ordinal-group: 11;
+  -webkit-order: 10;
+      -ms-flex-order: 10;
+          order: 10;
+}
+.l-grid-9 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 75%;
+}
+.l-grid-offset-9 {
+  margin-left: 75%;
+}
+.l-grid-order-9 {
+  -webkit-box-ordinal-group: 10;
+  -webkit-order: 9;
+      -ms-flex-order: 9;
+          order: 9;
+}
+.l-grid-8 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 66.66666667%;
+}
+.l-grid-offset-8 {
+  margin-left: 66.66666667%;
+}
+.l-grid-order-8 {
+  -webkit-box-ordinal-group: 9;
+  -webkit-order: 8;
+      -ms-flex-order: 8;
+          order: 8;
+}
+.l-grid-7 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 58.33333333%;
+}
+.l-grid-offset-7 {
+  margin-left: 58.33333333%;
+}
+.l-grid-order-7 {
+  -webkit-box-ordinal-group: 8;
+  -webkit-order: 7;
+      -ms-flex-order: 7;
+          order: 7;
+}
+.l-grid-6 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 50%;
+}
+.l-grid-offset-6 {
+  margin-left: 50%;
+}
+.l-grid-order-6 {
+  -webkit-box-ordinal-group: 7;
+  -webkit-order: 6;
+      -ms-flex-order: 6;
+          order: 6;
+}
+.l-grid-5 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 41.66666667%;
+}
+.l-grid-offset-5 {
+  margin-left: 41.66666667%;
+}
+.l-grid-order-5 {
+  -webkit-box-ordinal-group: 6;
+  -webkit-order: 5;
+      -ms-flex-order: 5;
+          order: 5;
+}
+.l-grid-4 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 33.33333333%;
+}
+.l-grid-offset-4 {
+  margin-left: 33.33333333%;
+}
+.l-grid-order-4 {
+  -webkit-box-ordinal-group: 5;
+  -webkit-order: 4;
+      -ms-flex-order: 4;
+          order: 4;
+}
+.l-grid-3 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 25%;
+}
+.l-grid-offset-3 {
+  margin-left: 25%;
+}
+.l-grid-order-3 {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.l-grid-2 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 16.66666667%;
+}
+.l-grid-offset-2 {
+  margin-left: 16.66666667%;
+}
+.l-grid-order-2 {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.l-grid-1 {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 8.33333333%;
+}
+.l-grid-offset-1 {
+  margin-left: 8.33333333%;
+}
+.l-grid-order-1 {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
+@media (min-width: 480px) {
+  .l-grid\@sm {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .l-grid-12\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
+  .l-grid-order-12\@sm {
+    -webkit-box-ordinal-group: 13;
+    -webkit-order: 12;
+        -ms-flex-order: 12;
+            order: 12;
+  }
+  .l-grid-11\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 91.66666667%;
+  }
+  .l-grid-offset-11\@sm {
+    margin-left: 91.66666667%;
+  }
+  .l-grid-order-11\@sm {
+    -webkit-box-ordinal-group: 12;
+    -webkit-order: 11;
+        -ms-flex-order: 11;
+            order: 11;
+  }
+  .l-grid-10\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 83.33333333%;
+  }
+  .l-grid-offset-10\@sm {
+    margin-left: 83.33333333%;
+  }
+  .l-grid-order-10\@sm {
+    -webkit-box-ordinal-group: 11;
+    -webkit-order: 10;
+        -ms-flex-order: 10;
+            order: 10;
+  }
+  .l-grid-9\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 75%;
+  }
+  .l-grid-offset-9\@sm {
+    margin-left: 75%;
+  }
+  .l-grid-order-9\@sm {
+    -webkit-box-ordinal-group: 10;
+    -webkit-order: 9;
+        -ms-flex-order: 9;
+            order: 9;
+  }
+  .l-grid-8\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 66.66666667%;
+  }
+  .l-grid-offset-8\@sm {
+    margin-left: 66.66666667%;
+  }
+  .l-grid-order-8\@sm {
+    -webkit-box-ordinal-group: 9;
+    -webkit-order: 8;
+        -ms-flex-order: 8;
+            order: 8;
+  }
+  .l-grid-7\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 58.33333333%;
+  }
+  .l-grid-offset-7\@sm {
+    margin-left: 58.33333333%;
+  }
+  .l-grid-order-7\@sm {
+    -webkit-box-ordinal-group: 8;
+    -webkit-order: 7;
+        -ms-flex-order: 7;
+            order: 7;
+  }
+  .l-grid-6\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50%;
+  }
+  .l-grid-offset-6\@sm {
+    margin-left: 50%;
+  }
+  .l-grid-order-6\@sm {
+    -webkit-box-ordinal-group: 7;
+    -webkit-order: 6;
+        -ms-flex-order: 6;
+            order: 6;
+  }
+  .l-grid-5\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 41.66666667%;
+  }
+  .l-grid-offset-5\@sm {
+    margin-left: 41.66666667%;
+  }
+  .l-grid-order-5\@sm {
+    -webkit-box-ordinal-group: 6;
+    -webkit-order: 5;
+        -ms-flex-order: 5;
+            order: 5;
+  }
+  .l-grid-4\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 33.33333333%;
+  }
+  .l-grid-offset-4\@sm {
+    margin-left: 33.33333333%;
+  }
+  .l-grid-order-4\@sm {
+    -webkit-box-ordinal-group: 5;
+    -webkit-order: 4;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  .l-grid-3\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 25%;
+  }
+  .l-grid-offset-3\@sm {
+    margin-left: 25%;
+  }
+  .l-grid-order-3\@sm {
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  .l-grid-2\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 16.66666667%;
+  }
+  .l-grid-offset-2\@sm {
+    margin-left: 16.66666667%;
+  }
+  .l-grid-order-2\@sm {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .l-grid-1\@sm {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 8.33333333%;
+  }
+  .l-grid-offset-1\@sm {
+    margin-left: 8.33333333%;
+  }
+  .l-grid-order-1\@sm {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+@media (min-width: 768px) {
+  .l-grid\@md {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .l-grid-12\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
+  .l-grid-order-12\@md {
+    -webkit-box-ordinal-group: 13;
+    -webkit-order: 12;
+        -ms-flex-order: 12;
+            order: 12;
+  }
+  .l-grid-11\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 91.66666667%;
+  }
+  .l-grid-offset-11\@md {
+    margin-left: 91.66666667%;
+  }
+  .l-grid-order-11\@md {
+    -webkit-box-ordinal-group: 12;
+    -webkit-order: 11;
+        -ms-flex-order: 11;
+            order: 11;
+  }
+  .l-grid-10\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 83.33333333%;
+  }
+  .l-grid-offset-10\@md {
+    margin-left: 83.33333333%;
+  }
+  .l-grid-order-10\@md {
+    -webkit-box-ordinal-group: 11;
+    -webkit-order: 10;
+        -ms-flex-order: 10;
+            order: 10;
+  }
+  .l-grid-9\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 75%;
+  }
+  .l-grid-offset-9\@md {
+    margin-left: 75%;
+  }
+  .l-grid-order-9\@md {
+    -webkit-box-ordinal-group: 10;
+    -webkit-order: 9;
+        -ms-flex-order: 9;
+            order: 9;
+  }
+  .l-grid-8\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 66.66666667%;
+  }
+  .l-grid-offset-8\@md {
+    margin-left: 66.66666667%;
+  }
+  .l-grid-order-8\@md {
+    -webkit-box-ordinal-group: 9;
+    -webkit-order: 8;
+        -ms-flex-order: 8;
+            order: 8;
+  }
+  .l-grid-7\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 58.33333333%;
+  }
+  .l-grid-offset-7\@md {
+    margin-left: 58.33333333%;
+  }
+  .l-grid-order-7\@md {
+    -webkit-box-ordinal-group: 8;
+    -webkit-order: 7;
+        -ms-flex-order: 7;
+            order: 7;
+  }
+  .l-grid-6\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50%;
+  }
+  .l-grid-offset-6\@md {
+    margin-left: 50%;
+  }
+  .l-grid-order-6\@md {
+    -webkit-box-ordinal-group: 7;
+    -webkit-order: 6;
+        -ms-flex-order: 6;
+            order: 6;
+  }
+  .l-grid-5\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 41.66666667%;
+  }
+  .l-grid-offset-5\@md {
+    margin-left: 41.66666667%;
+  }
+  .l-grid-order-5\@md {
+    -webkit-box-ordinal-group: 6;
+    -webkit-order: 5;
+        -ms-flex-order: 5;
+            order: 5;
+  }
+  .l-grid-4\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 33.33333333%;
+  }
+  .l-grid-offset-4\@md {
+    margin-left: 33.33333333%;
+  }
+  .l-grid-order-4\@md {
+    -webkit-box-ordinal-group: 5;
+    -webkit-order: 4;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  .l-grid-3\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 25%;
+  }
+  .l-grid-offset-3\@md {
+    margin-left: 25%;
+  }
+  .l-grid-order-3\@md {
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  .l-grid-2\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 16.66666667%;
+  }
+  .l-grid-offset-2\@md {
+    margin-left: 16.66666667%;
+  }
+  .l-grid-order-2\@md {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .l-grid-1\@md {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 8.33333333%;
+  }
+  .l-grid-offset-1\@md {
+    margin-left: 8.33333333%;
+  }
+  .l-grid-order-1\@md {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+@media (min-width: 960px) {
+  .l-grid\@lg {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .l-grid-12\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
+  .l-grid-order-12\@lg {
+    -webkit-box-ordinal-group: 13;
+    -webkit-order: 12;
+        -ms-flex-order: 12;
+            order: 12;
+  }
+  .l-grid-11\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 91.66666667%;
+  }
+  .l-grid-offset-11\@lg {
+    margin-left: 91.66666667%;
+  }
+  .l-grid-order-11\@lg {
+    -webkit-box-ordinal-group: 12;
+    -webkit-order: 11;
+        -ms-flex-order: 11;
+            order: 11;
+  }
+  .l-grid-10\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 83.33333333%;
+  }
+  .l-grid-offset-10\@lg {
+    margin-left: 83.33333333%;
+  }
+  .l-grid-order-10\@lg {
+    -webkit-box-ordinal-group: 11;
+    -webkit-order: 10;
+        -ms-flex-order: 10;
+            order: 10;
+  }
+  .l-grid-9\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 75%;
+  }
+  .l-grid-offset-9\@lg {
+    margin-left: 75%;
+  }
+  .l-grid-order-9\@lg {
+    -webkit-box-ordinal-group: 10;
+    -webkit-order: 9;
+        -ms-flex-order: 9;
+            order: 9;
+  }
+  .l-grid-8\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 66.66666667%;
+  }
+  .l-grid-offset-8\@lg {
+    margin-left: 66.66666667%;
+  }
+  .l-grid-order-8\@lg {
+    -webkit-box-ordinal-group: 9;
+    -webkit-order: 8;
+        -ms-flex-order: 8;
+            order: 8;
+  }
+  .l-grid-7\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 58.33333333%;
+  }
+  .l-grid-offset-7\@lg {
+    margin-left: 58.33333333%;
+  }
+  .l-grid-order-7\@lg {
+    -webkit-box-ordinal-group: 8;
+    -webkit-order: 7;
+        -ms-flex-order: 7;
+            order: 7;
+  }
+  .l-grid-6\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50%;
+  }
+  .l-grid-offset-6\@lg {
+    margin-left: 50%;
+  }
+  .l-grid-order-6\@lg {
+    -webkit-box-ordinal-group: 7;
+    -webkit-order: 6;
+        -ms-flex-order: 6;
+            order: 6;
+  }
+  .l-grid-5\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 41.66666667%;
+  }
+  .l-grid-offset-5\@lg {
+    margin-left: 41.66666667%;
+  }
+  .l-grid-order-5\@lg {
+    -webkit-box-ordinal-group: 6;
+    -webkit-order: 5;
+        -ms-flex-order: 5;
+            order: 5;
+  }
+  .l-grid-4\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 33.33333333%;
+  }
+  .l-grid-offset-4\@lg {
+    margin-left: 33.33333333%;
+  }
+  .l-grid-order-4\@lg {
+    -webkit-box-ordinal-group: 5;
+    -webkit-order: 4;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  .l-grid-3\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 25%;
+  }
+  .l-grid-offset-3\@lg {
+    margin-left: 25%;
+  }
+  .l-grid-order-3\@lg {
+    -webkit-box-ordinal-group: 4;
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  .l-grid-2\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 16.66666667%;
+  }
+  .l-grid-offset-2\@lg {
+    margin-left: 16.66666667%;
+  }
+  .l-grid-order-2\@lg {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .l-grid-1\@lg {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 8.33333333%;
+  }
+  .l-grid-offset-1\@lg {
+    margin-left: 8.33333333%;
+  }
+  .l-grid-order-1\@lg {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+  }
 }
 /* # Modules
 
 Code from here on describes modules. Each module is designed to be stand-alone,
 meaning that it has no other module dependancies (although it may rely on base
-rules, utilities and helper classes.
+rules, utility, layout and helper classes).
 */
 /* ## Input boxes
 
@@ -524,34 +1497,34 @@ regular `input` class adding all the expected styling to an input box.
 }
 .noinput::-webkit-input-placeholder,
 .input::-webkit-input-placeholder {
-  color: #999999;
+  color: #808080;
 }
 .noinput:-moz-placeholder,
 .input:-moz-placeholder {
-  color: #999999;
+  color: #808080;
   opacity: 1;
 }
 .noinput::-moz-placeholder,
 .input::-moz-placeholder {
-  color: #999999;
+  color: #808080;
   opacity: 1;
 }
 .noinput:-ms-input-placeholder,
 .input:-ms-input-placeholder {
-  color: #999999;
+  color: #808080;
 }
 .noinput:focus,
 .input:focus {
   outline: none;
 }
 .input {
-  padding: 4.2px 8.4px;
-  border: 1px solid #cccccc;
+  border: 1px solid #999999;
+  padding: 5px 10px;
 }
 .input:focus {
-  border-color: #ff0000;
+  border-color: #F00;
 }
-.input-full {
+.input--full {
   width: 100%;
 }
 /* ## Buttons
@@ -592,16 +1565,16 @@ to work with `<input type="submit">` - use `<button type="submit">` instead.
   text-decoration: none;
 }
 .button {
-  padding: 4.2px 8.4px;
-  background-color: #e6e6e6;
-  color: #666666;
   font-weight: bold;
+  padding: 5px 10px;
   text-transform: uppercase;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   white-space: nowrap;
+  background-color: #e6e6e6;
+  color: #666666;
 }
 .button:active,
 .button.is-active {
@@ -611,174 +1584,121 @@ to work with `<input type="submit">` - use `<button type="submit">` instead.
 }
 .button[disabled],
 .button.is-disabled {
-  cursor: not-allowed, default;
+  cursor: not-allowed;
   opacity: 0.5;
   pointer-events: none;
 }
-.button-success {
-  background-color: #5cb85c;
-  color: #ffffff;
+.button:focus,
+.button:hover,
+.button.is-hover {
+  background-color: #f9f9f9;
+  color: #666666;
 }
-.button-success:focus,
-.button-success:hover,
-.button-success.is-hover {
-  background-color: #77c477;
+.button:active,
+.button.is-active {
+  background-color: #d9d9d9;
 }
-.button-success:active,
-.button-success.is-active {
-  background-color: #4cae4c;
-}
-.button-info {
-  background-color: #5bc0de;
-  color: #ffffff;
-}
-.button-info:focus,
-.button-info:hover,
-.button-info.is-hover {
-  background-color: #7bcce4;
-}
-.button-info:active,
-.button-info.is-active {
-  background-color: #46b8da;
-}
-.button-warning {
-  background-color: #f0ad4e;
-  color: #ffffff;
-}
-.button-warning:focus,
-.button-warning:hover,
-.button-warning.is-hover {
-  background-color: #f3bd71;
-}
-.button-warning:active,
-.button-warning.is-active {
-  background-color: #eea236;
-}
-.button-danger {
-  background-color: #d9534f;
-  color: #ffffff;
-}
-.button-danger:focus,
-.button-danger:hover,
-.button-danger.is-hover {
-  background-color: #e0726e;
-}
-.button-danger:active,
-.button-danger.is-active {
-  background-color: #d43f3a;
-}
-.button-primary {
-  background-color: #ff0000;
-  color: #ffffff;
-}
-.button-primary:focus,
-.button-primary:hover,
-.button-primary.is-hover {
-  background-color: #ff2626;
-}
-.button-primary:active,
-.button-primary.is-active {
-  background-color: #e60000;
-}
-.button-secondary {
-  background-color: #00ff00;
-  color: #ffffff;
-}
-.button-secondary:focus,
-.button-secondary:hover,
-.button-secondary.is-hover {
-  background-color: #26ff26;
-}
-.button-secondary:active,
-.button-secondary.is-active {
-  background-color: #00e600;
-}
-.button-tertiary {
-  background-color: #0000ff;
-  color: #ffffff;
-}
-.button-tertiary:focus,
-.button-tertiary:hover,
-.button-tertiary.is-hover {
-  background-color: #2626ff;
-}
-.button-tertiary:active,
-.button-tertiary.is-active {
-  background-color: #0000e6;
-}
-.button-quaternary {
-  background-color: #ffff00;
-  color: #ffffff;
-}
-.button-quaternary:focus,
-.button-quaternary:hover,
-.button-quaternary.is-hover {
-  background-color: #ffff26;
-}
-.button-quaternary:active,
-.button-quaternary.is-active {
-  background-color: #e5e600;
-}
-/* ## Media Object
-
-As popularised by [Nichole
-Sullivan](http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/),
-the media object places an image next to text. The image width does not need to
-be known and the text will fill the remaining space.
-
-The basic media object is an image on the left followed by text:
-
-    <div class="media">
-        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="media_body">(text)</div>
-    </div>
-
-An image on the right is possible.
-
-    <div class="media">
-        <div class="media_body">(text)</div>
-        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
-    </div>
-
-It is possible to place an image on both the left and the right.
-
-    <div class="media">
-        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="media_body">(text)</div>
-        <div class="media_right"><img src="http://placekitten.com/g/50/50"></div>
-    </div>
-
-Media objects are nestable.
-
-    <div class="media">
-        <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
-        <div class="media_body">
-
-            (text)
-
-            <div class="media">
-                <div class="media_left"><img src="http://placekitten.com/g/50/50"></div>
-                <div class="media_body">(text)</div>
-            </div>
-
-        </div>
-    </div>
-
- */
-.media_left,
-.media_right {
-  width: 0;
-}
-.media_body {
+.button--block {
+  display: block;
   width: 100%;
 }
-.media_right,
-.media_padleft {
-  padding-left: 8.4px;
+.button--success {
+  background-color: #5CB85C;
+  color: #ffffff;
 }
-.media_left,
-.media_padright {
-  padding-right: 8.4px;
+.button--success:focus,
+.button--success:hover,
+.button--success.is-hover {
+  background-color: #77c477;
+  color: #ffffff;
+}
+.button--success:active,
+.button--success.is-active {
+  background-color: #4cae4c;
+}
+.button--info {
+  background-color: #5BC0DE;
+  color: #ffffff;
+}
+.button--info:focus,
+.button--info:hover,
+.button--info.is-hover {
+  background-color: #7bcce4;
+  color: #ffffff;
+}
+.button--info:active,
+.button--info.is-active {
+  background-color: #46b8da;
+}
+.button--warning {
+  background-color: #F0AD4E;
+  color: #ffffff;
+}
+.button--warning:focus,
+.button--warning:hover,
+.button--warning.is-hover {
+  background-color: #f3bd71;
+  color: #ffffff;
+}
+.button--warning:active,
+.button--warning.is-active {
+  background-color: #eea236;
+}
+.button--danger {
+  background-color: #D9534F;
+  color: #ffffff;
+}
+.button--danger:focus,
+.button--danger:hover,
+.button--danger.is-hover {
+  background-color: #e0726e;
+  color: #ffffff;
+}
+.button--danger:active,
+.button--danger.is-active {
+  background-color: #d43f3a;
+}
+.button--primary {
+  background-color: #F00;
+  color: #ffffff;
+}
+.button--primary:focus,
+.button--primary:hover,
+.button--primary.is-hover {
+  background-color: #ff2626;
+  color: #ffffff;
+}
+.button--primary:active,
+.button--primary.is-active {
+  background-color: #e60000;
+}
+.button--secondary {
+  background-color: #0F0;
+  color: #ffffff;
+}
+.button--secondary:focus,
+.button--secondary:hover,
+.button--secondary.is-hover {
+  background-color: #26ff26;
+  color: #ffffff;
+}
+.button--secondary:active,
+.button--secondary.is-active {
+  background-color: #00e600;
+}
+.button--tertiary {
+  background-color: #00F;
+  color: #ffffff;
+}
+.button--tertiary:focus,
+.button--tertiary:hover,
+.button--tertiary.is-hover {
+  background-color: #2626ff;
+  color: #ffffff;
+}
+.button--tertiary:active,
+.button--tertiary.is-active {
+  background-color: #0000e6;
 }
 /* # Helper classes
 
@@ -841,22 +1761,22 @@ colour specified.
   background-color: #ffffff;
 }
 .t-lighter-grey {
-  color: #e6e6e6;
-}
-.b-lighter-grey {
-  background-color: #e6e6e6;
-}
-.t-light-grey {
   color: #cccccc;
 }
-.b-light-grey {
+.b-lighter-grey {
   background-color: #cccccc;
 }
-.t-grey {
+.t-light-grey {
   color: #999999;
 }
-.b-grey {
+.b-light-grey {
   background-color: #999999;
+}
+.t-grey {
+  color: #808080;
+}
+.b-grey {
+  background-color: #808080;
 }
 .t-dark-grey {
   color: #666666;
@@ -883,44 +1803,38 @@ colour specified.
   background-color: #000000;
 }
 .t-success {
-  color: #5cb85c;
+  color: #5CB85C;
 }
 .b-success {
-  background-color: #5cb85c;
+  background-color: #5CB85C;
 }
 .t-info {
-  color: #5bc0de;
+  color: #5BC0DE;
 }
 .b-info {
-  background-color: #5bc0de;
+  background-color: #5BC0DE;
 }
 .t-warning {
-  color: #f0ad4e;
+  color: #F0AD4E;
 }
 .b-warning {
-  background-color: #f0ad4e;
+  background-color: #F0AD4E;
 }
 .t-danger {
-  color: #d9534f;
+  color: #D9534F;
 }
 .b-danger {
-  background-color: #d9534f;
+  background-color: #D9534F;
 }
 .t-secondary {
-  color: #00ff00;
+  color: #0F0;
 }
 .b-secondary {
-  background-color: #00ff00;
+  background-color: #0F0;
 }
 .t-tertiary {
-  color: #0000ff;
+  color: #00F;
 }
 .b-tertiary {
-  background-color: #0000ff;
-}
-.t-quaternary {
-  color: #ffff00;
-}
-.b-quaternary {
-  background-color: #ffff00;
+  background-color: #00F;
 }

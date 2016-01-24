@@ -16,30 +16,42 @@ html {
 }
 
 body {
-    background-color: @white;
-    color:            @darker-grey;
+    background-color: @body-bg;
+    color:            @body-colour;
     font-family:      @base-font-family;
-    font-size:        unit(@base-font-size, @base-font-unit);
+    font-size:        @base-font-size;
     line-height:      @base-line-height;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6,
 p, ul, ol, dl,
 blockquote, pre {
-    .unit(margin-bottom, 1);
+    margin-bottom: @line-height-computed;
 }
 
 ul,
 ol {
-    .unit(margin-left, 1);
+    margin-left: @line-height-computed;
 }
 
 abbr[title] {
-    border-bottom: 1px dotted;
+    border-bottom: 1px dotted; // 1px is not a variable so it matches underline
+    cursor:        help;
 }
 
 b,
 strong {
     font-weight: bold;
+}
+
+a {
+
+    color:           @link-colour;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        color:           @link-colour-hover;
+        text-decoration: underline;
+    }
+
 }

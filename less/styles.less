@@ -17,9 +17,9 @@
 // 
 // These includes help create the style sheet.
 
-@import "mixins/unit";
 @import "mixins/button-variant";
 @import "mixins/text-and-background";
+@import "mixins/grid";
 
 
 // Base files
@@ -57,8 +57,8 @@ in this style sheet that are allowed to know anything about the child elements
 decendant selector `>`). 
 */
 
-@import "utilities/clearfix";
-@import "utilities/floated";
+@import "utilities/clearfix"; // DEPRECATED
+@import "utilities/floated"; // DEPRECATED
 @import "utilities/lists";
 @import "utilities/vertical align";
 @import "utilities/reduce";
@@ -98,7 +98,6 @@ rules, utility, layout and helper classes).
 
 @import "modules/input";
 @import "modules/button";
-//@import "modules/media";
 
 
 // Helper classes

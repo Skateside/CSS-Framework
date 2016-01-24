@@ -1,21 +1,3 @@
-/* ## Table-like layouts
-
-Makes the immediate children behave like `table-cell`s. This is not so useful on
-it's own, but acts like a base for `u-verttop`, `u-vertmid` and `u-vertbottom`.
-
-*/
-
-.u-table {
-
-    display: table;
-
-    > * {
-        display: table-cell;
-    }
-
-}
-
-
 /* ## Vertical alignments
 
 Vertically aligns test. There are three varients:
@@ -41,26 +23,22 @@ Vertically aligns test. There are three varients:
 
 */
 
-.u-verttop:extend(.u-table all) {
-
-    > * {
-        vertical-align: top;
-    }
-
+.u-verttop {
+    align-items:    flex-start;
+    display:        flex;
+    flex-direction: row;
 }
 
-.u-vertmid:extend(.u-table all) {
-
-    > * {
-        vertical-align: middle;
-    }
-
+.u-vertmid,
+.u-vertmiddle {
+    align-items:    center;
+    display:        flex;
+    flex-direction: row;
 }
 
-.u-vertbottom:extend(.u-table all) {
-
-    > * {
-        vertical-align: bottom;
-    }
-
+.u-vertbot,
+.u-vertbottom {
+    align-items:    flex-end;
+    display:        flex;
+    flex-direction: row;
 }

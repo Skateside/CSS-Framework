@@ -29,21 +29,21 @@ regular `input` class adding all the expected styling to an input box.
     }
 
     &::-webkit-input-placeholder {
-        color: @grey;
+        color: @input-colour;
     }
 
     &:-moz-placeholder {
-        color:   @grey;
+        color:   @input-colour;
         opacity: 1;
     }
 
     &::-moz-placeholder {
-        color:   @grey;
+        color:   @input-colour;
         opacity: 1;
     }
 
     &:-ms-input-placeholder {
-        color: @grey;
+        color: @input-colour;
     }
 
     &:focus {
@@ -54,16 +54,15 @@ regular `input` class adding all the expected styling to an input box.
 
 .input:extend(.noinput all) {
 
-    .unit(padding, 0.25, 0.5);
-
-    border: @border-thin solid @light-grey;
+    border:  @input-border;
+    padding: @input-padding;
 
     &:focus {
-        border-color: @primary;
+        border-color: @brand-primary;
     }
 
 }
 
-.input-full {
+.input--full {
     width: 100%;
 }

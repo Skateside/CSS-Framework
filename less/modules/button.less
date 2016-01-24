@@ -38,45 +38,46 @@ to work with `<input type="submit">` - use `<button type="submit">` instead.
 
 .button:extend(.nobutton all) {
 
-    .unit(padding, 0.25, 0.5);
-
-    background-color: @lighter-grey;
-    color:            @dark-grey;
-    font-weight:      bold;
-    text-transform:   uppercase;
-    user-select:      none;
-    white-space:      nowrap;
+    font-weight:    bold;
+    padding:        @button-padding;
+    text-transform: uppercase;
+    user-select:    none;
+    white-space:    nowrap;
 
     &:active,
     &.is-active {
         background-image: none;
-        box-shadow:       inset 0 unit((@base-font-size / 4), px)
-                                unit((@base-font-size / 2), px)
-                                rgba(0, 0, 0, .125);
+        box-shadow:       @button-active-shadow;
         outline:          0;
     }
 
     &[disabled],
     &.is-disabled {
-        cursor:         not-allowed,
-                        default;
+        cursor:         not-allowed;
         opacity:        0.5;
         pointer-events: none;
     }
 
+    .button-variant(@lightest-grey, @dark-grey);
+
 }
 
-.button-success    { .button-variant(@success   ); }
-.button-info       { .button-variant(@info      ); }
-.button-warning    { .button-variant(@warning   ); }
-.button-danger     { .button-variant(@danger    ); }
-.button-primary    { .button-variant(@primary   ); }
-.button-secondary  { .button-variant(@secondary ); }
-.button-tertiary   { .button-variant(@tertiary  ); }
-.button-quaternary { .button-variant(@quaternary); }
-//.button-quinary    { .button-variant(@quinary   ); }
-//.button-senary     { .button-variant(@senary    ); }
-//.button-septenary  { .button-variant(@septenary ); }
-//.button-octonary   { .button-variant(@octonary  ); }
-//.button-nonary     { .button-variant(@nonary    ); }
-//.button-denary     { .button-variant(@denary    ); }
+.button--block {
+    display: block;
+    width:   100%;
+}
+
+.button--success    { .button-variant(@brand-success,    @white); }
+.button--info       { .button-variant(@brand-info,       @white); }
+.button--warning    { .button-variant(@brand-warning,    @white); }
+.button--danger     { .button-variant(@brand-danger,     @white); }
+.button--primary    { .button-variant(@brand-primary,    @white); }
+.button--secondary  { .button-variant(@brand-secondary,  @white); }
+.button--tertiary   { .button-variant(@brand-tertiary,   @white); }
+//.button--quaternary { .button-variant(@brand-quaternary, @white); }
+//.button--quinary    { .button-variant(@brand-quinary,    @white); }
+//.button--senary     { .button-variant(@brand-senary,     @white); }
+//.button--septenary  { .button-variant(@brand-septenary,  @white); }
+//.button--octonary   { .button-variant(@brand-octonary,   @white); }
+//.button--nonary     { .button-variant(@brand-nonary,     @white); }
+//.button--denary     { .button-variant(@brand-denary,     @white); }

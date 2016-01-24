@@ -1,0 +1,78 @@
+#grid {
+
+    .column(@units, @columns, @at) {
+
+        @selector: ~".l-grid-@{units}@{at}";
+
+        @{selector} {
+            padding-left:  (@grid-gutter / 2);
+            padding-right: (@grid-gutter / 2);
+            width:         percentage(@units * (1 / @columns));
+        }
+
+    }
+
+    .offset(@inits, @columns, @at) {
+
+        @selector: ~".l-grid-offset-@{units}@{at}";
+
+        @{selector} {
+            margin-left: percentage(@units * (1 / @columns));
+        }
+
+    }
+
+    .order(@inits, @at) {
+
+        @selector: ~".l-grid-order-@{units}@{at}";
+
+        @{selector} {
+            order: @units;
+        }
+
+    }
+
+    .container(@at) {
+
+        @selector: ~".l-grid@{at}";
+
+        @{selector} {
+            display:        flex;
+            flex-direction: row;
+            flex-wrap:      wrap;
+            margin-left:    -(@grid-gutter / 2);
+            margin-right:   -(@grid-gutter / 2);
+        }
+
+    }
+
+    .size(@units, @columns, @at) when (@units = @columns) {
+
+        #grid > .column(@units, @columns, @at);
+        #grid > .order(@units - 1, @at);
+
+    }
+
+    .size(@units, @columns, @at) when (@units < @columns) {
+
+        #grid > .column(@units, @columns, @at);
+        #grid > .offset(@units - 1, @columns, @at);
+        #grid > .order(@units - 1, @at);
+
+    }
+
+    .loop(@index, @columns, @at) when (@index > 0) {
+
+        #grid > .size(@index, @columns, @at);
+        #grid > .loop(@index - 1, @columns, @at);
+
+    }
+
+    .make(@columns, @at) {
+
+        #grid > .container(@at);
+        #grid > .loop(@columns, @columns, @at);
+
+    }
+
+}

@@ -53,14 +53,14 @@
 //      }
 // 
 
-.text-and-background(@colour-name) {
+.text-and-background(@name, @colour) {
 
-    .t-@{colour-name} {
-        color: @@colour-name;
+    .t-@{name} {
+        color: @colour;
     }
 
-    .b-@{colour-name} {
-        background-color: @@colour-name;
+    .b-@{name} {
+        background-color: @colour;
     }
 
 }

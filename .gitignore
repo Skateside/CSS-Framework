@@ -1,3 +1,9 @@
-# Prepros Config #
-##################
-prepros.cfg
+# Ignore pre-processor files
+Gruntfile.js
+Gruntsetup.js
+grunt/
+node_modules/
+package.json
+
+# Ignore test files
+html/
